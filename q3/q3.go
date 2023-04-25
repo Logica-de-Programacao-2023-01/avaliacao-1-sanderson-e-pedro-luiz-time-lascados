@@ -13,6 +13,18 @@ package q3
 //Se M ou N forem iguais ou menores que 0, a função deve retornar um erro.
 
 func DominoPieces(m, n int) (int, error) {
-	// Seu código aqui
-	return 0, nil
+	var mult, peças int
+	mult = m * n
+	fmt.Println(peças)
+	if m <= 0 || n <= 0 {
+		return 0, fmt.Errorf("erro")
+	}
+	if mult%2 == 0 {
+		mult++
+		peças = mult / 2
+	} else {
+		mult--
+		peças = mult / 2
+	}
+	return peças, nil
 }
