@@ -20,48 +20,30 @@ import (
 //Ajude Pedro a lidar com esta tarefa fácil.
 
 func ProcessString(s string) string {
-	chars := strings.Split(s, "")
-	for _, ss := range s {
-		s = strings.ReplaceAll(s, "A", "")
-		s = strings.ReplaceAll(s, "a", "")
-		s = strings.ReplaceAll(s, "E", "")
-		s = strings.ReplaceAll(s, "e", "")
-		s = strings.ReplaceAll(s, "I", "")
-		s = strings.ReplaceAll(s, "i", "")
-		s = strings.ReplaceAll(s, "o", "")
-		s = strings.ReplaceAll(s, "O", "")
-		s = strings.ReplaceAll(s, "U", "")
-		s = strings.ReplaceAll(s, "u", "")
-		fmt.Println(ss)
-	}
-	for _, sss := range s {
-		s = strings.ReplaceAll(s, "B", "b")
-		s = strings.ReplaceAll(s, "C", "c")
-		s = strings.ReplaceAll(s, "D", "d")
-		s = strings.ReplaceAll(s, "F", "f")
-		s = strings.ReplaceAll(s, "G", "g")
-		s = strings.ReplaceAll(s, "H", "h")
-		s = strings.ReplaceAll(s, "J", "j")
-		s = strings.ReplaceAll(s, "K", "k")
-		s = strings.ReplaceAll(s, "L,", "l")
-		s = strings.ReplaceAll(s, "M", "m")
-		s = strings.ReplaceAll(s, "N", "n")
-		s = strings.ReplaceAll(s, "P", "p")
-		s = strings.ReplaceAll(s, "Q", "q")
-		s = strings.ReplaceAll(s, "R", "r")
-		s = strings.ReplaceAll(s, "S", "s")
-		s = strings.ReplaceAll(s, "T", "t")
-		s = strings.ReplaceAll(s, "V", "v")
-		s = strings.ReplaceAll(s, "W", "w")
-		s = strings.ReplaceAll(s, "X", "x")
-		s = strings.ReplaceAll(s, "Y", "y")
-		s = strings.ReplaceAll(s, "Z", "z")
+	// Seu código aqui
 
-		fmt.Println(sss)
+	var res strings.Builder
+	for _, c := range s {
+		switch c {
+		case 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U':
+			// Deleta vogais
+			continue
+		default:
+			// Insere '.' antes de consoantes e converte para minúsculas se necessário
+			if 'A' <= c && c <= 'Z' {
+				c = c - 'A' + 'a'
+			}
+			res.WriteRune('.')
+			res.WriteRune(c)
+		}
 	}
-	for i, char := range chars {
-		chars[i] = "." + char
+	return res.String()
+}
 
-	}
-	return s
+func main() {
+	var s string
+	fmt.Print("Digite uma sequência de caracteres: ")
+	fmt.Scan(&s)
+
+	fmt.Println(ProcessString(s))
 }
